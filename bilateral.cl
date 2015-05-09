@@ -33,5 +33,5 @@ __kernel void bilateral(
             weight_pixel_sum += weight * in[id+dy*row_stride+dx];
         }
     }
-    out[id] = uchar(weight_pixel_sum/weight_sum + 0.5f);
+    out[id] = convert_uchar(weight_pixel_sum/weight_sum + 0.5f);
 }
