@@ -236,8 +236,6 @@ void DeviceManager::Call(
 
 	for (size_t i = 0; i < arg_and_sizes.size(); ++i) {
 		auto &arg_and_size = arg_and_sizes[i];
-		LOG(INFO) << "arg: " << i << " \n";
-		LOG(INFO) << arg_and_size.second << " \n";
 		result = clSetKernelArg(kernel, i, arg_and_size.second, arg_and_size.first);
 		CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 	}
