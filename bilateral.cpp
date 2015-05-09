@@ -86,9 +86,19 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	const int work_w = w-2*r;
 	const int work_h = h-2*r;
 	const size_t block_dim[2] = { 32, 32 };
-	const size_t grid_dim[2] = { 1024, 1024 };
+	size_t grid_dim[2] = { 1024, 1024 };
 
-	LOG(INFO) << "in opencl: " << w << "\n";
+    /*if( w % block_dim[0] == 0 ) grid_dim[0] = w;
+    else{
+        grid_dim[0] = ( size_t( w / block_dim[0] ) + 1 ) * block_dim[0];
+    }
+
+    if( h % block_dim[1] == 0 ) grid_dim[1] = h;
+    else{
+        grid_dim[1] = ( size_t( h / block_dim[1] ) + 1 ) * block_dim[1];
+    }*/
+
+	LOG(INFO) << "in opencl: " << grid_dim[0] << ", " << grid_dim[1] << "\n";
 
 	/*TODO: call the kernel*/
 	vector<pair<const void*, size_t>> arg_and_sizes;
@@ -101,8 +111,16 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_range_gaussian_table.get(), sizeof(cl_mem) ) );
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_color_gaussian_table.get(), sizeof(cl_mem) ) );
 
+    // for debug
+    int a = 0;
+	auto d_a = device_manager->AllocateMemory(CL_MEM_READ_WRITE, sizeof(int));
+	device_manager->WriteMemory(&a, *d_a.get(), sizeof(int));
+	arg_and_sizes.push_back( pair<const void*, size_t>( d_a.get(), sizeof(cl_mem)));
+
 	device_manager->Call( kernel, arg_and_sizes, 2, grid_dim, NULL, block_dim );
 
 	device_manager->ReadMemory(out, *d_out.get(), w*h*sizeof(uint8_t));
+	device_manager->ReadMemory(&a, *d_a.get(), sizeof(int));
+    LOG(INFO) << "a: " << a << "\n";
 }
 

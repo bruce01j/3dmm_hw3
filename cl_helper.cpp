@@ -236,10 +236,11 @@ void DeviceManager::Call(
 
 	for (size_t i = 0; i < arg_and_sizes.size(); ++i) {
 		auto &arg_and_size = arg_and_sizes[i];
+        LOG(INFO) << i << "\n";
 		result = clSetKernelArg(kernel, i, arg_and_size.second, arg_and_size.first);
 		CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 	}
 	// TODO: a OpenCL call is required here
-	result = clEnqueueNDRangeKernel( command_queue_, kernel, dim, offset, global_dim, nullptr, 0, nullptr, nullptr );
+	result = clEnqueueNDRangeKernel( command_queue_, kernel, dim, offset, global_dim, local_dim, 0, nullptr, nullptr );
 	CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 }

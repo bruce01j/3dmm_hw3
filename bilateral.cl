@@ -6,7 +6,8 @@ __kernel void bilateral(
 		const int work_h,
 		const int row_stride,
 		__constant float *range_gaussian_table,
-		__constant float *color_gaussian_table
+		__constant float *color_gaussian_table,
+        __global int *a
 )
 {
     int x = get_group_id(0);
@@ -34,4 +35,5 @@ __kernel void bilateral(
         }
     }
     out[id] = convert_uchar(weight_pixel_sum/weight_sum + 0.5f);
+    a[0] += 1;
 }
