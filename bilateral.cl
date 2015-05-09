@@ -24,13 +24,13 @@ __kernel void bilateral(
         for (int dx = -r; dx <= r; dx++) {
             int range_xdiff = abs(dx);
             int range_ydiff = abs(dy);
-            int color_diff = abs(in[id] - in[id+dy*w+dx]);
+            int color_diff = abs(in[id] - in[id+dy*row_stride+dx]);
             float weight =
                   color_gaussian_table[color_diff]
                 * range_gaussian_table[range_xdiff]
                 * range_gaussian_table[range_ydiff];
             weight_sum += weight;
-            weight_pixel_sum += weight * in[id+dy*w+dx];
+            weight_pixel_sum += weight * in[id+dy*row_stride+dx];
         }
     }
     out[id] = uchar(weight_pixel_sum/weight_sum + 0.5f);
