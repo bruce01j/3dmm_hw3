@@ -13,10 +13,10 @@ __kernel void bilateral(
     int y = get_group_id(1);
     int id = y * row_stride + x;
 
-    /*if( x < r || x >= work_w + r || y < r || y >= work_h + r ){
-        out[id] = 0;
+    if( x < r || x >= work_w + r || y < r || y >= work_h + r ){
+        out[id] = convert_uchar(0);
         return;
-    }*/
+    }
 
     float weight_sum = 0.0f;
     float weight_pixel_sum = 0.0f;
