@@ -88,7 +88,7 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	const size_t block_dim[2] = { w, h };
 	const size_t grid_dim[2] = { w, h };
 
-	// LOG(INFO) << "in opencl:\n";
+	LOG(INFO) << "in opencl: " << w << "\n";
 
 	/*TODO: call the kernel*/
 	vector<pair<const void*, size_t>> arg_and_sizes;
