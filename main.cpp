@@ -76,6 +76,10 @@ int main(int argc, char** argv)
 	unique_ptr<uint8_t[]> image_out_gold(new uint8_t[w*h*c]);
 	unique_ptr<uint8_t[]> image_out_your(new uint8_t[w*h*c]);
 
+	for( size_t i = 0; i < w*h*c; ++i ){
+		image_out_your.get()[i] = 0;
+	}
+
 	// Let's run the code
 	time_point<high_resolution_clock> tic, toc;
 	microseconds::rep elapsed_cxx, elapsed_ocl;
