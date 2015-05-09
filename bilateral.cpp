@@ -85,8 +85,8 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 
 	const int work_w = w-2*r;
 	const int work_h = h-2*r;
-	const size_t block_dim[2] = { 1, 1 };
-	const size_t grid_dim[2] = { w, h };
+	const size_t block_dim[2] = { 32, 32 };
+	const size_t grid_dim[2] = { 1024, 1024 };
 
 	LOG(INFO) << "in opencl: " << w << "\n";
 
