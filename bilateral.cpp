@@ -97,7 +97,7 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	arg_and_sizes.push_back( pair<const void*, size_t>( &r, sizeof(int) ) );
 	arg_and_sizes.push_back( pair<const void*, size_t>( &work_w, sizeof(int) ) );
 	arg_and_sizes.push_back( pair<const void*, size_t>( &work_h, sizeof(int) ) );
-	arg_and_sizes.push_back( pair<const void*, size_t>( &r, sizeof(int) ) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &w, sizeof(int) ) );
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_range_gaussian_table.get(), sizeof(cl_mem) ) );
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_color_gaussian_table.get(), sizeof(cl_mem) ) );
 
