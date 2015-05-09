@@ -216,6 +216,15 @@ void DeviceManager::ReadMemory(void *host, cl_mem device, size_t nbyte)
 void DeviceManager::WriteMemory(const void *host, cl_mem device, size_t nbyte)
 {
 	// TODO: a OpenCL call is required here
+	cl_int result = clEnqueueWriteBuffer(
+		command_queue_,
+		device,
+		CL_TRUE,
+		0, nbyte,
+		host,
+		0, nullptr, nullptr
+	);
+	CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 }
 
 void DeviceManager::Call(
@@ -231,5 +240,6 @@ void DeviceManager::Call(
 		CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 	}
 	// TODO: a OpenCL call is required here
+	result = clEnqueueNDRangeKernel( command_queue_, kernel, dim, offset, global_dim, local_dim, 0, nullptr, nullptr );
 	CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 }

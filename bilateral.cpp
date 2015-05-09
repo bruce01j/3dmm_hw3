@@ -85,10 +85,23 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 
 	const int work_w = w-2*r;
 	const int work_h = h-2*r;
-	const size_t block_dim[2] = {/*TODO*/};
-	const size_t grid_dim[2] = {/*TODO*/};
+	const size_t block_dim[2] = { w, h };
+	const size_t grid_dim[2] = NULL;//{/*TODO*/};
 
-	/*TODO: cal the kernel*/
+	// LOG(INFO) << "in opencl:\n";
+
+	/*TODO: call the kernel*/
+	vector<pair<const void*, size_t>> arg_and_sizes;
+	arg_and_sizes.push_back( pair<const void*, size_t>( &d_in, sizeof(cl_mem) ) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &d_out, sizeof(cl_mem) ) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &r, sizeof(int) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &work_w, sizeof(int) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &work_h, sizeof(int) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &r, sizeof(int) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &d_range_gaussian_table, sizeof(cl_mem) ) );
+	arg_and_sizes.push_back( pair<const void*, size_t>( &d_color_gaussian_table, sizeof(cl_mem) ) );
+
+	device_manager->Call( kernel, arg_and_sizes, 2, grid_dim, NULL, block_dim )
 
 	device_manager->ReadMemory(out, *d_out.get(), w*h*sizeof(uint8_t));
 }
