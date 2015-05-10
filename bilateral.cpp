@@ -114,8 +114,11 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_range_gaussian_table.get(), sizeof(cl_mem) ) );
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_color_gaussian_table.get(), sizeof(cl_mem) ) );
 
+	arg_and_sizes.push_back( pair<const void*, size_t>( NULL, (2*r+block_dim[0])*(2*r+block_dim[1])*sizeof(uint8_t) ) );
+
 	device_manager->Call( kernel, arg_and_sizes, 2, grid_dim, NULL, block_dim );
 
+    LOG(INFO) << "finish";
 	device_manager->ReadMemory(out, *d_out.get(), w*h*sizeof(uint8_t));
 }
 

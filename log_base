@@ -1,0 +1,60 @@
+I0510 10:33:17.769821 31786 main.cpp:31] 1 platform(s) found
+I0510 10:33:17.769915 31786 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 10:33:17.769927 31786 main.cpp:44] 2 device(s) found under some platform
+I0510 10:33:17.770009 31786 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:17.770074 31786 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:17.894659 31786 main.cpp:74] Load 400x400x1 image
+I0510 10:33:17.962918 31786 bilateral.cpp:103] in opencl: 416, 416
+I0510 10:33:17.963965 31786 main.cpp:97] Without OpenCL: 66260ms
+I0510 10:33:17.963980 31786 main.cpp:98] With OpenCL: 1190ms
+I0510 10:33:17.963985 31786 main.cpp:99] Speedup: 55.6807x
+I0510 10:33:18.036698 31793 main.cpp:31] 1 platform(s) found
+I0510 10:33:18.036783 31793 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 10:33:18.036797 31793 main.cpp:44] 2 device(s) found under some platform
+I0510 10:33:18.036864 31793 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:18.036922 31793 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:18.147127 31793 main.cpp:74] Load 435x480x1 image
+I0510 10:33:18.235025 31793 bilateral.cpp:103] in opencl: 448, 480
+I0510 10:33:18.235914 31793 main.cpp:97] Without OpenCL: 85918ms
+I0510 10:33:18.235929 31793 main.cpp:98] With OpenCL: 1044ms
+I0510 10:33:18.235934 31793 main.cpp:99] Speedup: 82.2969x
+I0510 10:33:18.308152 31800 main.cpp:31] 1 platform(s) found
+I0510 10:33:18.308233 31800 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 10:33:18.308244 31800 main.cpp:44] 2 device(s) found under some platform
+I0510 10:33:18.308311 31800 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:18.308401 31800 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:18.418419 31800 main.cpp:74] Load 1024x695x1 image
+I0510 10:33:18.720295 31800 bilateral.cpp:103] in opencl: 1024, 704
+I0510 10:33:18.723019 31800 main.cpp:97] Without OpenCL: 299689ms
+I0510 10:33:18.723037 31800 main.cpp:98] With OpenCL: 3032ms
+I0510 10:33:18.723043 31800 main.cpp:99] Speedup: 98.842x
+I0510 10:33:18.798893 31807 main.cpp:31] 1 platform(s) found
+I0510 10:33:18.798975 31807 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 10:33:18.798986 31807 main.cpp:44] 2 device(s) found under some platform
+I0510 10:33:18.799052 31807 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:18.799110 31807 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:18.908972 31807 main.cpp:74] Load 400x400x1 image
+I0510 10:33:19.682857 31807 bilateral.cpp:103] in opencl: 384, 384
+I0510 10:33:19.693441 31807 main.cpp:97] Without OpenCL: 771868ms
+I0510 10:33:19.693456 31807 main.cpp:98] With OpenCL: 10722ms
+I0510 10:33:19.693464 31807 main.cpp:99] Speedup: 71.9892x
+I0510 10:33:19.765729 31814 main.cpp:31] 1 platform(s) found
+I0510 10:33:19.765812 31814 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 10:33:19.765823 31814 main.cpp:44] 2 device(s) found under some platform
+I0510 10:33:19.765889 31814 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:19.765945 31814 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:19.875668 31814 main.cpp:74] Load 435x480x1 image
+I0510 10:33:20.911954 31814 bilateral.cpp:103] in opencl: 416, 448
+I0510 10:33:20.922291 31814 main.cpp:97] Without OpenCL: 1034264ms
+I0510 10:33:20.922307 31814 main.cpp:98] With OpenCL: 10495ms
+I0510 10:33:20.922313 31814 main.cpp:99] Speedup: 98.5483x
+I0510 10:33:20.995053 31821 main.cpp:31] 1 platform(s) found
+I0510 10:33:20.995132 31821 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 10:33:20.995144 31821 main.cpp:44] 2 device(s) found under some platform
+I0510 10:33:20.995210 31821 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:20.995268 31821 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 10:33:21.105324 31821 main.cpp:74] Load 1024x695x1 image
+I0510 10:33:24.576416 31821 bilateral.cpp:103] in opencl: 992, 672
+I0510 10:33:24.603703 31821 main.cpp:97] Without OpenCL: 3469165ms
+I0510 10:33:24.603718 31821 main.cpp:98] With OpenCL: 27581ms
+I0510 10:33:24.603723 31821 main.cpp:99] Speedup: 125.781x
