@@ -22,7 +22,6 @@ __kernel void bilateral(
 
     for( int i = 0; i < r+r+lw-lx; i += lw ){
         for( int j = 0; j < r+r+lh-ly; j += lh ){
-            //`if( i+lx+(j+ly)*local_stride >= 42*42 ) continue;
             patch[i+lx+(j+ly)*local_stride] = in[x+i+(j+y)*row_stride];
         }
     }
@@ -30,7 +29,6 @@ __kernel void bilateral(
     barrier(CLK_LOCAL_MEM_FENCE);
 
     if( x >= work_w || y >= work_h ){
-        // out[id] = 255;
     }
     else{
         float weight_sum = 0.0f;
