@@ -85,20 +85,23 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 
 	const int work_w = w-2*r;
 	const int work_h = h-2*r;
-	const size_t block_dim[2] = { 32, 32 };
-	size_t grid_dim[2] = { 1024, 1024 };
+    const size_t mySize = 32;
+	const size_t block_dim[2] = { mySize, mySize };
+	size_t grid_dim[2] = { w, h };
 
-    /*if( w % block_dim[0] == 0 ) grid_dim[0] = w;
+    //*
+    if( w % mySize == 0 ) grid_dim[0] = w;
     else{
-        grid_dim[0] = ( size_t( w / block_dim[0] ) + 1 ) * block_dim[0];
+        grid_dim[0] = ( size_t( w / mySize ) + 1 ) * mySize;
     }
 
-    if( h % block_dim[1] == 0 ) grid_dim[1] = h;
+    if( h % mySize == 0 ) grid_dim[1] = h;
     else{
-        grid_dim[1] = ( size_t( h / block_dim[1] ) + 1 ) * block_dim[1];
-    }*/
+        grid_dim[1] = ( size_t( h / mySize ) + 1 ) * mySize;
+    }
 
 	LOG(INFO) << "in opencl: " << grid_dim[0] << ", " << grid_dim[1] << "\n";
+    //*/
 
 	/*TODO: call the kernel*/
 	vector<pair<const void*, size_t>> arg_and_sizes;
@@ -112,15 +115,29 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_color_gaussian_table.get(), sizeof(cl_mem) ) );
 
     // for debug
-    int a = 0;
-	auto d_a = device_manager->AllocateMemory(CL_MEM_READ_WRITE, sizeof(int));
-	device_manager->WriteMemory(&a, *d_a.get(), sizeof(int));
+    /*
+    int a[10] = {}, b[10] = {};
+	auto d_a = device_manager->AllocateMemory(CL_MEM_READ_WRITE, sizeof(int)*10);
+	device_manager->WriteMemory(&a, *d_a.get(), sizeof(int)*10);
 	arg_and_sizes.push_back( pair<const void*, size_t>( d_a.get(), sizeof(cl_mem)));
+	auto d_b = device_manager->AllocateMemory(CL_MEM_READ_WRITE, sizeof(int)*10);
+	device_manager->WriteMemory(&b, *d_b.get(), sizeof(int)*10);
+	arg_and_sizes.push_back( pair<const void*, size_t>( d_b.get(), sizeof(cl_mem)));
+    //*/
 
 	device_manager->Call( kernel, arg_and_sizes, 2, grid_dim, NULL, block_dim );
 
 	device_manager->ReadMemory(out, *d_out.get(), w*h*sizeof(uint8_t));
-	device_manager->ReadMemory(&a, *d_a.get(), sizeof(int));
-    LOG(INFO) << "a: " << a << "\n";
+
+	/*device_manager->ReadMemory(&a, *d_a.get(), sizeof(int)*10);
+	device_manager->ReadMemory(&b, *d_b.get(), sizeof(int)*10);
+    LOG(INFO) << work_h*work_w << ", " << a[0] << ", " << b[0] << "\n";
+    for( size_t i = 0; i < 10; ++i ){
+        LOG(INFO) << a[i] << ", ";
+    }
+    for( size_t i = 0; i < 10; ++i ){
+        LOG(INFO) << b[i] << ", ";
+    }
+    //*/
 }
 

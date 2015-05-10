@@ -75,6 +75,7 @@ int main(int argc, char** argv)
 	CHECK_EQ(c, 1) << "Please use a grayscale image";
 	unique_ptr<uint8_t[]> image_out_gold(new uint8_t[w*h*c]);
 	unique_ptr<uint8_t[]> image_out_your(new uint8_t[w*h*c]);
+	unique_ptr<uint8_t[]> image_out_diff(new uint8_t[w*h*c]);
 
 	//for( size_t i = 0; i < w*h*c; ++i ){
 	//	image_out_your.get()[i] = 0;
@@ -108,6 +109,7 @@ int main(int argc, char** argv)
 	for (int y = r; y < h-r; ++y) {
 		for (int x = r; x < w-r; ++x) {
 			int diff = abs(image_out_gold.get()[w*y+x] - image_out_your.get()[w*y+x]);
+            image_out_diff.get()[w*y+x] = diff*10;
 			if (diff >= 4) {
 				error_count++;
 			} else if (diff >= 2){
@@ -115,6 +117,7 @@ int main(int argc, char** argv)
 			}
 		}
 	}
+	WritePGM(image_out_diff.get(), w, h, "diff.pgm");
 	LOG_IF(WARNING, warning_count) << warning_count << " warning pixels";
 	LOG_IF(ERROR, error_count) << error_count << " error pixels";
 
