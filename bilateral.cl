@@ -14,7 +14,6 @@ __kernel void bilateral(
     int id = y * row_stride + x;
 
     if( x < r || x >= work_w + r || y < r || y >= work_h + r ){
-        out[id] = convert_uchar(0);
     }
     else{
         float weight_sum = 0.0f;
@@ -35,3 +34,4 @@ __kernel void bilateral(
         out[id] = convert_uchar(weight_pixel_sum/weight_sum + 0.5f);
     }
 }
+
