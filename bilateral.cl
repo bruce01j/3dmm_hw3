@@ -7,7 +7,9 @@ __kernel void bilateral(
 		const int row_stride,
 		__constant float *range_gaussian_table,
 		__constant float *color_gaussian_table,
-        __local uchar* patch
+        __local uchar* patch,
+		__local float *local_range_gaussian_table,
+		__local float *local_color_gaussian_table
 )
 {
     int x = get_global_id(0);
@@ -25,6 +27,17 @@ __kernel void bilateral(
             patch[i+lx+(j+ly)*local_stride] = in[x+i+(j+y)*row_stride];
         }
     }
+
+    for( int j = ly; j*lw < 256; j += lh ){
+        for( int i = lx; j*lw + i <  256; i += lw ){
+            local_color_gaussian_table[i+j*lw] = color_gaussian_table[i+j*lw];
+        }
+    }
+    for( int j = ly; j*lw < r+1; j += lh ){
+        for( int i = lx; j*lw + i <  r+1; i += lw ){
+            local_range_gaussian_table[i+j*lw] = range_gaussian_table[i+j*lw];
+        }
+    }
     
     barrier(CLK_LOCAL_MEM_FENCE);
 
@@ -37,13 +50,14 @@ __kernel void bilateral(
             for (int dx = -r; dx <= r; dx++) {
                 int range_xdiff = abs(dx);
                 int range_ydiff = abs(dy);
-                int color_diff = abs(patch[lid] - patch[lid+dy*local_stride+dx]);
+                uchar dest_c = patch[lid+dy*local_stride+dx];
+                int color_diff = abs(patch[lid] - dest_c);
                 float weight =
-                      color_gaussian_table[color_diff]
-                    * range_gaussian_table[range_xdiff]
-                    * range_gaussian_table[range_ydiff];
+                      local_color_gaussian_table[color_diff]
+                    * local_range_gaussian_table[range_xdiff]
+                    * local_range_gaussian_table[range_ydiff];
                 weight_sum += weight;
-                weight_pixel_sum += weight * patch[lid+dy*local_stride+dx];
+                weight_pixel_sum += weight * dest_c;
             }
         }
         out[id] = convert_uchar(weight_pixel_sum/weight_sum + 0.5f);

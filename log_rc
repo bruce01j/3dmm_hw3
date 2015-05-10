@@ -1,0 +1,66 @@
+I0510 13:50:40.430718  5054 main.cpp:31] 1 platform(s) found
+I0510 13:50:40.430815  5054 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 13:50:40.430830  5054 main.cpp:44] 2 device(s) found under some platform
+I0510 13:50:40.430907  5054 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:40.430970  5054 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:40.555140  5054 main.cpp:74] Load 400x400x1 image
+I0510 13:50:40.622653  5054 bilateral.cpp:103] in opencl: 416, 416
+I0510 13:50:40.622709  5054 bilateral.cpp:123] finish
+I0510 13:50:40.623051  5054 main.cpp:97] Without OpenCL: 65472ms
+I0510 13:50:40.623064  5054 main.cpp:98] With OpenCL: 538ms
+I0510 13:50:40.623070  5054 main.cpp:99] Speedup: 121.695x
+I0510 13:50:40.695785  5061 main.cpp:31] 1 platform(s) found
+I0510 13:50:40.695876  5061 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 13:50:40.695890  5061 main.cpp:44] 2 device(s) found under some platform
+I0510 13:50:40.695962  5061 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:40.696024  5061 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:40.807366  5061 main.cpp:74] Load 435x480x1 image
+I0510 13:50:40.895298  5061 bilateral.cpp:103] in opencl: 448, 480
+I0510 13:50:40.895352  5061 bilateral.cpp:123] finish
+I0510 13:50:40.895788  5061 main.cpp:97] Without OpenCL: 85933ms
+I0510 13:50:40.895800  5061 main.cpp:98] With OpenCL: 645ms
+I0510 13:50:40.895805  5061 main.cpp:99] Speedup: 133.229x
+I0510 13:50:40.967600  5068 main.cpp:31] 1 platform(s) found
+I0510 13:50:40.967681  5068 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 13:50:40.967694  5068 main.cpp:44] 2 device(s) found under some platform
+I0510 13:50:40.967758  5068 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:40.967815  5068 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:41.077392  5068 main.cpp:74] Load 1024x695x1 image
+I0510 13:50:41.378254  5068 bilateral.cpp:103] in opencl: 1024, 704
+I0510 13:50:41.378412  5068 bilateral.cpp:123] finish
+I0510 13:50:41.379770  5068 main.cpp:97] Without OpenCL: 298656ms
+I0510 13:50:41.379786  5068 main.cpp:98] With OpenCL: 1827ms
+I0510 13:50:41.379791  5068 main.cpp:99] Speedup: 163.468x
+I0510 13:50:41.459182  5075 main.cpp:31] 1 platform(s) found
+I0510 13:50:41.459264  5075 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 13:50:41.459275  5075 main.cpp:44] 2 device(s) found under some platform
+I0510 13:50:41.459342  5075 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:41.459398  5075 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:41.568527  5075 main.cpp:74] Load 400x400x1 image
+I0510 13:50:42.341460  5075 bilateral.cpp:103] in opencl: 384, 384
+I0510 13:50:42.341521  5075 bilateral.cpp:123] finish
+I0510 13:50:42.343701  5075 main.cpp:97] Without OpenCL: 770914ms
+I0510 13:50:42.343714  5075 main.cpp:98] With OpenCL: 2378ms
+I0510 13:50:42.343719  5075 main.cpp:99] Speedup: 324.186x
+I0510 13:50:42.416821  5082 main.cpp:31] 1 platform(s) found
+I0510 13:50:42.416923  5082 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 13:50:42.416935  5082 main.cpp:44] 2 device(s) found under some platform
+I0510 13:50:42.417003  5082 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:42.417060  5082 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:42.530839  5082 main.cpp:74] Load 435x480x1 image
+I0510 13:50:43.570019  5082 bilateral.cpp:103] in opencl: 416, 448
+I0510 13:50:43.570094  5082 bilateral.cpp:123] finish
+I0510 13:50:43.572676  5082 main.cpp:97] Without OpenCL: 1037009ms
+I0510 13:50:43.572691  5082 main.cpp:98] With OpenCL: 2835ms
+I0510 13:50:43.572696  5082 main.cpp:99] Speedup: 365.788x
+I0510 13:50:43.648505  5089 main.cpp:31] 1 platform(s) found
+I0510 13:50:43.648612  5089 main.cpp:35] >>> Name: NVIDIA CUDA
+I0510 13:50:43.648624  5089 main.cpp:44] 2 device(s) found under some platform
+I0510 13:50:43.648694  5089 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:43.648751  5089 main.cpp:47] >>> Name: GeForce GTX 980
+I0510 13:50:43.764711  5089 main.cpp:74] Load 1024x695x1 image
+I0510 13:50:47.386312  5089 bilateral.cpp:103] in opencl: 992, 672
+I0510 13:50:47.386463  5089 bilateral.cpp:123] finish
+I0510 13:50:47.394716  5089 main.cpp:97] Without OpenCL: 3619617ms
+I0510 13:50:47.394738  5089 main.cpp:98] With OpenCL: 8693ms
+I0510 13:50:47.394743  5089 main.cpp:99] Speedup: 416.383x
