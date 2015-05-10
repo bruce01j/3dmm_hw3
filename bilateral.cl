@@ -11,10 +11,10 @@ __kernel void bilateral(
 {
     int x = get_global_id(0);
     int y = get_global_id(1);
-    int id = y * row_stride + x;
+    int id = ( y + r ) * row_stride + x + r;
 
-    if( x < r || x >= work_w + r || y < r || y >= work_h + r ){
-        out[id] = convert_uchar(0);
+    if( x >= work_w || y >= work_h ){
+        // out[id] = 255;
     }
     else{
         float weight_sum = 0.0f;

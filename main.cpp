@@ -96,6 +96,7 @@ int main(int argc, char** argv)
 
 	LOG(INFO) << "Without OpenCL: " << elapsed_cxx << "ms";
 	LOG(INFO) << "With OpenCL: " << elapsed_ocl << "ms";
+	LOG(INFO) << "Speedup: " << double(elapsed_cxx) / elapsed_ocl << "x";
 
 	// Output and check the result
 	WritePGM(image_out_your.get(), w, h, "your.pgm");

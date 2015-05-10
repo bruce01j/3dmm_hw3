@@ -87,17 +87,17 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	const int work_h = h-2*r;
     const size_t mySize = 32;
 	const size_t block_dim[2] = { mySize, mySize };
-	size_t grid_dim[2] = { w, h };
+	size_t grid_dim[2] = { work_w, work_h };
 
     //*
-    if( w % mySize == 0 ) grid_dim[0] = w;
+    if( work_w % mySize == 0 ) grid_dim[0] = work_w;
     else{
-        grid_dim[0] = ( size_t( w / mySize ) + 1 ) * mySize;
+        grid_dim[0] = ( size_t( work_w / mySize ) + 1 ) * mySize;
     }
 
-    if( h % mySize == 0 ) grid_dim[1] = h;
+    if( work_h % mySize == 0 ) grid_dim[1] = work_h;
     else{
-        grid_dim[1] = ( size_t( h / mySize ) + 1 ) * mySize;
+        grid_dim[1] = ( size_t( work_h / mySize ) + 1 ) * mySize;
     }
 
 	LOG(INFO) << "in opencl: " << grid_dim[0] << ", " << grid_dim[1] << "\n";
