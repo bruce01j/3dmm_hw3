@@ -241,6 +241,10 @@ void DeviceManager::Call(
 		CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 	}
 	// TODO: a OpenCL call is required here
+    // cl_ulong size;
+    // result = clGetDeviceInfo(device_, CL_DEVICE_LOCAL_MEM_SIZE, sizeof(cl_ulong), &size, 0);
+	// CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
+    // LOG(INFO) << size;
 	result = clEnqueueNDRangeKernel( command_queue_, kernel, dim, nullptr, global_dim, local_dim, 0, nullptr, nullptr );
 	CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 }
