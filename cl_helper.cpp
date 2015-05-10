@@ -241,9 +241,6 @@ void DeviceManager::Call(
 		CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 	}
 	// TODO: a OpenCL call is required here
-    size_t p = 0;
-    clGetDeviceInfo( device_, CL_DEVICE_MAX_WORK_GROUP_SIZE, sizeof(size_t), &p, NULL );
-    LOG(INFO) << p;
 	result = clEnqueueNDRangeKernel( command_queue_, kernel, dim, nullptr, global_dim, local_dim, 0, nullptr, nullptr );
 	CHECK_EQ(result, CL_SUCCESS) << clewErrorString(result);
 }
