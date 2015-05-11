@@ -89,7 +89,6 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 	const size_t block_dim[2] = { mySize, mySize };
 	size_t grid_dim[2] = { work_w, work_h };
 
-    //*
     if( work_w % mySize == 0 ) grid_dim[0] = work_w;
     else{
         grid_dim[0] = ( size_t( work_w / mySize ) + 1 ) * mySize;
@@ -99,9 +98,6 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
     else{
         grid_dim[1] = ( size_t( work_h / mySize ) + 1 ) * mySize;
     }
-
-	LOG(INFO) << "in opencl: " << grid_dim[0] << ", " << grid_dim[1] << "\n";
-    //*/
 
 	/*TODO: call the kernel*/
 	vector<pair<const void*, size_t>> arg_and_sizes;
@@ -119,7 +115,6 @@ void bilateral_ocl(const uint8_t *in, uint8_t *out, const BilateralConfig config
 
 	device_manager->Call( kernel, arg_and_sizes, 2, grid_dim, NULL, block_dim );
 
-    LOG(INFO) << "finish";
 	device_manager->ReadMemory(out, *d_out.get(), w*h*sizeof(uint8_t));
 }
 
