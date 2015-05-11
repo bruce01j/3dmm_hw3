@@ -7,7 +7,6 @@ __kernel void bilateral(
 		const int row_stride,
 		__constant float *range_gaussian_table,
 		__constant float *color_gaussian_table,
-        __local uchar* patch,
 		__local float *local_range_gaussian_table,
 		__local float *local_color_gaussian_table
 )
@@ -22,12 +21,6 @@ __kernel void bilateral(
     int local_stride = 2 * r + lw;
     int lid = ( ly + r ) * local_stride + lx + r;
 
-    for( int i = 0; i < r+r+lw-lx; i += lw ){
-        for( int j = 0; j < r+r+lh-ly; j += lh ){
-            patch[i+lx+(j+ly)*local_stride] = in[x+i+(j+y)*row_stride];
-        }
-    }
-
     for( int j = ly; j*lw < 256; j += lh ){
         for( int i = lx; j*lw + i <  256; i += lw ){
             local_color_gaussian_table[i+j*lw] = color_gaussian_table[i+j*lw];
@@ -41,17 +34,15 @@ __kernel void bilateral(
     
     barrier(CLK_LOCAL_MEM_FENCE);
 
-    if( x >= work_w || y >= work_h ){
-    }
-    else{
+    if( x < work_w || y < work_h ){
         float weight_sum = 0.0f;
         float weight_pixel_sum = 0.0f;
         for (int dy = -r; dy <= r; dy++) {
             for (int dx = -r; dx <= r; dx++) {
                 int range_xdiff = abs(dx);
                 int range_ydiff = abs(dy);
-                uchar dest_c = patch[lid+dy*local_stride+dx];
-                int color_diff = abs(patch[lid] - dest_c);
+                uchar dest_c = in[id+dy*row_stride+dx];
+                int color_diff = abs(in[id] - dest_c);
                 float weight =
                       local_color_gaussian_table[color_diff]
                     * local_range_gaussian_table[range_xdiff]
